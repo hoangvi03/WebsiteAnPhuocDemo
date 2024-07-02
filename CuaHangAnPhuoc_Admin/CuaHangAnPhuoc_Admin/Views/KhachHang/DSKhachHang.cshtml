@@ -1,0 +1,51 @@
+﻿@model List<CuaHangAnPhuoc_Admin.Models.KhachHang>
+@{
+    ViewBag.Title = "DSKhachHang";
+    Layout = "~/Shared/_LayoutPage1.cshtml";
+}
+
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item active"><a href="#"><b>Danh sách khách hàng</b></a></li>
+        </ul>
+        <div id="clock"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+                           id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th width="10"><input type="checkbox" id="all"></th>
+                                <th width="50">Mã KH</th>
+                                <th width="200">Họ và tên</th>
+                                <th width="150">Địa chỉ</th>
+                                <th width="150">Email</th>
+                                <th width="100">Tên tài khoản</th>
+                                <th>SĐT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                    <td>@item.MaKH</td>
+                                    <td>@item.TenKH</td>
+                                    <td>@item.DiaChi</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.TK</td>
+                                    <td>@item.SDT</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

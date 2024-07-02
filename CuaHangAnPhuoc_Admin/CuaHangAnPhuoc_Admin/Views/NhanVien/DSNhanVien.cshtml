@@ -1,0 +1,75 @@
+﻿@model List<CuaHangAnPhuoc_Admin.Models.NhanVien>
+@{
+    ViewBag.Title = "DSNhanVien";
+    Layout = "~/Shared/_LayoutPage1.cshtml";
+}
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item active"><a href="#"><b>Danh sách nhân viên</b></a></li>
+        </ul>
+        <div id="clock"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+
+                    <div class="row element-button">
+                        <div class="col-sm-2">
+                            <a class="btn btn-add btn-sm" href="~/NhanVien/TaoMoiNV" title="Thêm">
+                                <i class="fas fa-plus"></i>
+                                Tạo mới nhân viên
+                            </a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)">
+                                <i class="fas fa-trash-alt"></i> Xóa tất cả
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+                           id="sampleTable">
+                        <thead>
+                            <tr>
+                                <th width="10"><input type="checkbox" id="all"></th>
+                                <th>ID nhân viên</th>
+                                <th width="250">Họ và tên</th>
+                                <th width="20">Ảnh thẻ</th>
+                                <th width="100">Ngày sinh</th>
+                                <th>Giới tính</th>
+                                <th>SĐT</th>
+                                <th>Chức vụ</th>
+                                <th width="100">Tính năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                    <td>@item.MANV</td>
+                                    <td>@item.TENNV</td>
+                                    <td><img class="img-card-person" src="/img-anhthe/@item.ANHNV" alt=""></td>
+                                    <td>@item.NGAYSINH.ToString("dd-MM-yyyy")</td>
+                                    <td>@item.GIOITINH</td>
+                                    <td>@item.SDT</td>
+                                    <td>@item.CHUCVU</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm trash NV" type="button" title="Xóa"
+                                                onclick="deleteRowN(this)">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        @Html.ActionLink("Sửa", "EditNV", new { id = item.MANV }, new { @class = "btn btn-primary btn-sm edit", @title = "Sửa" })
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

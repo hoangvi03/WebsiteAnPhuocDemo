@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "EditNV";
+    Layout = "~/Shared/_LayoutPage1.cshtml";
+}
+
+@model CuaHangAnPhuoc_Admin.Models.NhanVien
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item">Danh sách nhân viên</li>
+            <li class="breadcrumb-item">@Html.ActionLink("Thêm nhân viên", "TaoMoiNV")</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="tile">
+
+                <h3 class="tile-title">Tạo mới nhân viên</h3>
+                <div class="tile-body">
+                    @using (Html.BeginForm("EditNV", "NhanVien", FormMethod.Post, new { @class = "row" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.MANV)
+
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Họ và tên</label>
+                            @Html.EditorFor(model => model.TENNV, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        </div>
+                        <div class="form-group  col-md-3">
+                            @Html.Label("Giới tính", new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.GIOITINH, new SelectList(new List<string> { "Nam", "Nữ" }), new { @class = "form-control", @required = "required" })
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Địa chỉ email</label>
+                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Địa chỉ thường trú</label>
+                            @Html.EditorFor(model => model.DCHI, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        </div>
+                        <div class="form-group  col-md-4">
+                            <label class="control-label">Số điện thoại</label>
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Ngày sinh</label>
+                            @Html.TextBoxFor(model => model.NGAYSINH, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                        </div>
+                        <div class="form-group  col-md-3">
+                            <label class="control-label">Nơi sinh</label>
+                            @Html.EditorFor(model => model.NOISINH, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                        </div>
+                        <div class="form-group  col-md-3">
+                            @Html.Label("Chức vụ", new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.CHUCVU, new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "Giám đốc", Value = "CV001" },
+                                new SelectListItem { Text = "Kế toán", Value = "CV002" },
+                                new SelectListItem { Text = "Nhân sự", Value = "CV003" },
+                                new SelectListItem { Text = "Nhân viên bán hàng", Value = "CV004" },
+                                new SelectListItem { Text = "Sales", Value = "CV005" },
+                                new SelectListItem { Text = "Tạp vụ", Value = "CV006" },
+                                new SelectListItem { Text = "Thu ngân", Value = "CV007" },
+                                new SelectListItem { Text = "Bảo vệ", Value = "CV008" }
+                            }, new { @class = "form-control", id = "exampleSelect1", @required = "required" })
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ảnh 3x4 nhân viên</label>
+                            <div id="myfileupload">
+                                @Html.TextBoxFor(m => m.ANHNV, new { type = "file", id = "uploadfile", name = "ImageUpload", onchange = "readURL(this);" })
+                            </div>
+                            <div id="thumbbox">
+                                <img height="300" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
+                                <a class="removeimg" href="javascript:"></a>
+                            </div>
+                            <div id="boxchoice">
+                                <a href="javascript:" class="Choicefile"><i class='bx bx-upload'></i></a>
+                                <p style="clear:both"></p>
+                            </div>
+                        </div>
+                        <button class="btn btn-save" name="submit" type="submit">Lưu lại</button>
+                        <a class="btn btn-cancel" href="~/NhanVien/TaoMoiNV">Hủy bỏ</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
